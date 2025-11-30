@@ -1,0 +1,53 @@
+.forum-page {
+  flex: 1;
+  padding: 3rem 0;
+}
+
+.create-post-section {
+  margin-bottom: 2rem;
+}
+
+.create-post-form {
+  max-width: 800px;
+}
+
+.create-post-form h3 {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.login-prompt {
+  margin-bottom: 2rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .forum-page {
+    padding: 2rem 0;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}
+

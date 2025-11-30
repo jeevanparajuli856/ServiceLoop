@@ -1,0 +1,43 @@
+.my-organizations-page {
+  flex: 1;
+  padding: 3rem 0;
+}
+
+.organizations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.organization-card-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.organization-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.organization-actions .btn {
+  flex: 1;
+  text-align: center;
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .my-organizations-page {
+    padding: 2rem 0;
+  }
+
+  .organizations-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+

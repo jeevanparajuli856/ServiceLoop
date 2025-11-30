@@ -1,0 +1,168 @@
+.nonprofit-detail-page {
+  flex: 1;
+}
+
+.nonprofit-header {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--white);
+  padding: 3rem 0;
+}
+
+.nonprofit-header-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.nonprofit-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.nonprofit-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nonprofit-logo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+.nonprofit-header-info {
+  flex: 1;
+}
+
+.nonprofit-header-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.nonprofit-header-info h1 {
+  color: var(--white);
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.nonprofit-category-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.375rem 0.875rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.nonprofit-member-count {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.nonprofit-header-actions {
+  margin-top: 1rem;
+}
+
+.tab-content {
+  padding: 2rem 0;
+}
+
+.nonprofit-about {
+  max-width: 800px;
+}
+
+.nonprofit-about h2 {
+  margin-bottom: 1rem;
+}
+
+.nonprofit-mission {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
+}
+
+.nonprofit-contact {
+  margin-bottom: 2rem;
+}
+
+.nonprofit-contact h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.contact-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+  color: #1D4ED8;
+  text-decoration: underline;
+}
+
+.members-only-overlay {
+  background: var(--background);
+  border-radius: 12px;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.members-only-content h3 {
+  margin-bottom: 1.5rem;
+  color: var(--text-dark);
+}
+
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.forum-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .nonprofit-header {
+    padding: 2rem 0;
+  }
+
+  .nonprofit-header-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .nonprofit-logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .nonprofit-header-info h1 {
+    font-size: 1.75rem;
+  }
+
+  .nonprofit-header-top {
+    justify-content: center;
+  }
+
+  .events-list {
+    grid-template-columns: 1fr;
+  }
+}
+
