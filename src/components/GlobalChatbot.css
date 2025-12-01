@@ -31,7 +31,7 @@
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 380px;
+  width: 320px;
   max-height: 60vh;
   background: var(--white);
   border-radius: 16px;
@@ -149,22 +149,49 @@
 .chatbot-input-area {
   display: flex;
   gap: 0.5rem;
-  padding: 1rem 1.5rem;
+  padding: 0.75rem;
   border-top: 1px solid var(--border);
   background: var(--white);
+  align-items: center;
+  position: relative;
 }
 
 .chatbot-input-area input {
   flex: 1;
-  padding: 0.75rem;
+  padding: 0.75rem 3rem 0.75rem 0.75rem;
   border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 0.875rem;
+  min-width: 0;
 }
 
 .chatbot-input-area input:focus {
   outline: none;
   border-color: var(--primary);
+}
+
+.chatbot-clear {
+  position: absolute;
+  right: 48px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.chatbot-clear:hover {
+  background: var(--background);
+  color: var(--text-dark);
 }
 
 .chatbot-send {
@@ -174,12 +201,15 @@
   border-radius: 8px;
   width: 40px;
   height: 40px;
+  min-width: 40px;
+  flex-shrink: 0;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
+  padding: 0;
 }
 
 .chatbot-send:hover:not(:disabled) {

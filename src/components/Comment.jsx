@@ -20,7 +20,7 @@ export default function Comment({ comment }) {
   return (
     <div className="comment">
       <div className="comment-header">
-        <span className="comment-author">{comment.author_email || 'Anonymous'}</span>
+        <span className="comment-author">{comment.author_name || comment.author_email || 'Anonymous'}</span>
         <span className="comment-date">{formatDate(comment.created_at)}</span>
       </div>
       <p className="comment-text">{comment.text}</p>

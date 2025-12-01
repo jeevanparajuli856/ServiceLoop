@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { FiSearch, FiFilter, FiX } from 'react-icons/fi'
 import { supabase } from '../supabaseClient'
 import { useAuth } from '../hooks/useAuth'
 import NonprofitCard from '../components/NonprofitCard'
@@ -12,6 +13,7 @@ export default function Nonprofits() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [joinedNonprofits, setJoinedNonprofits] = useState(new Set())
+  const [filterPanelOpen, setFilterPanelOpen] = useState(false)
 
   useEffect(() => {
     loadNonprofits()
@@ -119,6 +121,13 @@ export default function Nonprofits() {
   // Get unique categories
   const categories = ['all', ...new Set(nonprofits.map((np) => np.category).filter(Boolean))]
 
+  const clearFilters = () => {
+    setSearchQuery('')
+    setSelectedCategory('all')
+  }
+
+  const hasActiveFilters = searchQuery.trim() !== '' || selectedCategory !== 'all'
+
   return (
     <div className="nonprofits-page">
       <div className="container">
@@ -127,27 +136,87 @@ export default function Nonprofits() {
           <p className="text-muted">Discover organizations making a difference in your community</p>
         </div>
 
-        <div className="filters">
-          <div className="search-bar">
-            <input
-              type="text"
-              placeholder="Search by name or mission..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="search-input"
-            />
+        <div className="search-filter-container">
+          {/* Search Bar */}
+          <div className="search-wrapper">
+            <div className="search-input-wrapper">
+              <FiSearch className="search-icon" />
+              <input
+                type="text"
+                placeholder="Search by name or mission..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-input"
+              />
+              {searchQuery && (
+                <button
+                  className="clear-search"
+                  onClick={() => setSearchQuery('')}
+                  aria-label="Clear search"
+                >
+                  <FiX />
+                </button>
+              )}
+            </div>
+            <button
+              className="filter-toggle-btn"
+              onClick={() => setFilterPanelOpen(!filterPanelOpen)}
+              aria-label="Toggle filters"
+            >
+              <FiFilter />
+              <span>Filters</span>
+              {hasActiveFilters && (
+                <span className="filter-badge">1</span>
+              )}
+            </button>
           </div>
-          <div className="category-filters">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`category-chip ${selectedCategory === category ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category === 'all' ? 'All Categories' : category}
-              </button>
-            ))}
-          </div>
+
+          {/* Filter Panel */}
+          {filterPanelOpen && (
+            <div className="filter-panel">
+              <div className="filter-panel-header">
+                <h3>Filter by Category</h3>
+                {hasActiveFilters && (
+                  <button className="clear-filters-btn" onClick={clearFilters}>
+                    Clear All
+                  </button>
+                )}
+              </div>
+              <div className="category-filters">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    className={`category-chip ${selectedCategory === category ? 'active' : ''}`}
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    {category === 'all' ? 'All Categories' : category}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Active Filters Display */}
+          {hasActiveFilters && (
+            <div className="active-filters">
+              {searchQuery && (
+                <span className="active-filter-tag">
+                  Search: "{searchQuery}"
+                  <button onClick={() => setSearchQuery('')}>
+                    <FiX />
+                  </button>
+                </span>
+              )}
+              {selectedCategory !== 'all' && (
+                <span className="active-filter-tag">
+                  Category: {selectedCategory}
+                  <button onClick={() => setSelectedCategory('all')}>
+                    <FiX />
+                  </button>
+                </span>
+              )}
+            </div>
+          )}
         </div>
 
         {loading ? (

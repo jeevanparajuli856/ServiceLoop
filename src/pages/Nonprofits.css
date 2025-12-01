@@ -9,59 +9,264 @@
 }
 
 .page-header h1 {
+  background: linear-gradient(135deg, #2563EB 0%, #3BB4C1 50%, #35A29F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
-.filters {
-  margin-bottom: 2rem;
+/* Search and Filter Container */
+.search-filter-container {
+  margin-bottom: 3rem;
 }
 
-.search-bar {
-  margin-bottom: 1.5rem;
+.search-wrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.search-input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .search-input {
-  max-width: 500px;
-  margin: 0 auto;
-  display: block;
-  padding: 0.875rem 1.25rem;
+  width: 100%;
+  padding: 0.875rem 1.25rem 0.875rem 3rem;
   font-size: 1rem;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--white);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.clear-search {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.clear-search:hover {
+  background: var(--background);
+  color: var(--text-dark);
+}
+
+.filter-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.25rem;
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.filter-toggle-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--background);
+}
+
+.filter-toggle-btn svg {
+  font-size: 1.25rem;
+}
+
+.filter-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: linear-gradient(135deg, #2563EB 0%, #3BB4C1 50%, #35A29F 100%);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 12px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Filter Panel */
+.filter-panel {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.filter-panel-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.clear-filters-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.clear-filters-btn:hover {
+  background: var(--background);
 }
 
 .category-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  justify-content: center;
 }
 
 .category-chip {
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1.25rem;
   background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 20px;
+  border: 2px solid var(--border);
+  border-radius: 24px;
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--text-dark);
+  white-space: nowrap;
 }
 
 .category-chip:hover {
   border-color: var(--primary);
   color: var(--primary);
+  background: var(--background);
+  transform: translateY(-1px);
 }
 
 .category-chip.active {
-  background: var(--primary);
+  background: linear-gradient(135deg, #2563EB 0%, #3BB4C1 50%, #35A29F 100%);
   color: var(--white);
-  border-color: var(--primary);
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
 }
 
+/* Active Filters Display */
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--background);
+  border-radius: 12px;
+}
+
+.active-filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.875rem;
+  color: var(--text-dark);
+}
+
+.active-filter-tag button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  transition: all 0.2s ease;
+}
+
+.active-filter-tag button:hover {
+  background: var(--background);
+  color: var(--text-dark);
+}
+
+/* Nonprofits Grid */
 .nonprofits-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
+  align-items: start;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .search-input-wrapper {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -69,9 +274,71 @@
     padding: 2rem 0;
   }
 
+  .search-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-input-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .filter-toggle-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-panel {
+    padding: 1.25rem;
+  }
+
+  .category-filters {
+    gap: 0.5rem;
+  }
+
+  .category-chip {
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+  }
+
   .nonprofits-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+
+  .nonprofit-card-image {
+    height: 220px;
+    min-height: 220px;
+    max-height: 220px;
+  }
+
+  .active-filters {
+    padding: 0.75rem;
+  }
+
+  .active-filter-tag {
+    font-size: 0.8125rem;
+    padding: 0.375rem 0.75rem;
+  }
 }
 
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .search-input {
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    font-size: 0.9375rem;
+  }
+
+  .search-icon {
+    left: 0.75rem;
+    font-size: 1.125rem;
+  }
+
+  .filter-panel-header h3 {
+    font-size: 1.125rem;
+  }
+}

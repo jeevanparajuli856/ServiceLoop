@@ -16,10 +16,12 @@ export default function NonprofitCard({ nonprofit, showJoin = false, isJoined = 
       <div className="nonprofit-card-content">
         <div className="nonprofit-card-header">
           <h3>{nonprofit.name}</h3>
-          {nonprofit.category && (
-            <span className="nonprofit-category">{nonprofit.category}</span>
-          )}
         </div>
+        {nonprofit.category && (
+          <div className="nonprofit-category-wrapper">
+            <span className="nonprofit-category">{nonprofit.category}</span>
+          </div>
+        )}
         <p className="nonprofit-mission">{nonprofit.mission || 'No mission statement available.'}</p>
         <div className="nonprofit-card-actions">
           <Link to={`/nonprofits/${nonprofit.id}`} className="btn btn-primary">

@@ -36,3 +36,5 @@ node_modules/
 .pnp/
 supabase/migrations/
 SETUP.md
+.temp/
+.vite/  

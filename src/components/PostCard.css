@@ -1,40 +1,109 @@
 .post-card {
-  display: block;
+  display: flex;
+  position: relative;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   text-decoration: none;
   color: inherit;
   transition: all 0.3s ease;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
 }
 
 .post-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.post-card-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(135deg, #2563EB 0%, #3BB4C1 50%, #35A29F 100%);
+}
+
+.post-card-content {
+  padding: 1.5rem;
+  width: 100%;
+  margin-left: 4px;
 }
 
 .post-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.75rem;
-  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-.post-card-header h3 {
-  margin: 0;
-  font-size: 1.125rem;
+.post-author-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.post-author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563EB 0%, #3BB4C1 50%, #35A29F 100%);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.post-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.post-author-name {
+  font-weight: 600;
+  font-size: 0.875rem;
   color: var(--text-dark);
-  flex: 1;
 }
 
 .post-date {
-  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
   font-size: 0.75rem;
-  white-space: nowrap;
+  color: var(--text-muted);
+}
+
+.post-date svg {
+  font-size: 0.875rem;
+}
+
+.post-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
 }
 
 .post-preview {
   color: var(--text-muted);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.6;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin-bottom: 1rem;
+  padding-top: 0.75rem;
 }
 
 .post-card-footer {
@@ -43,16 +112,38 @@
   align-items: center;
   padding-top: 1rem;
   border-top: 1px solid var(--border);
-  font-size: 0.875rem;
 }
 
-.post-author {
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.post-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
   color: var(--text-muted);
   font-weight: 500;
 }
 
-.post-comments {
+.post-meta-item svg {
+  font-size: 1rem;
   color: var(--primary);
-  font-weight: 500;
 }
 
+@media (max-width: 768px) {
+  .post-card-content {
+    padding: 1.25rem;
+  }
+
+  .post-title {
+    font-size: 1.125rem;
+  }
+
+  .post-preview {
+    font-size: 0.875rem;
+  }
+}

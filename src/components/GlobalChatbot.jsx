@@ -24,7 +24,7 @@ export default function GlobalChatbot() {
       setMessages([
         {
           sender: 'ai',
-          text: "Hello! I'm ImpactBridge Assistant. I can help you learn about nonprofits, events, volunteering opportunities, and navigating the website. What would you like to know?",
+          text: "Hello! I'm ServiceLoop Assistant. I can help you learn about nonprofits, events, volunteering opportunities, and navigating the website. What would you like to know?",
         },
       ])
     }
@@ -56,7 +56,7 @@ export default function GlobalChatbot() {
       // Call Supabase Edge Function for AI response
       const { data, error } = await supabase.functions.invoke('globalChatbot', {
         body: {
-          prompt: userMessage,
+          message: userMessage,
           context: {
             page: window.location.pathname,
             userId: user?.id || null,
@@ -66,7 +66,7 @@ export default function GlobalChatbot() {
 
       if (error) throw error
 
-      const aiResponse = data?.text || "I'm sorry, I couldn't process that request. Please try again."
+      const aiResponse = data?.reply || "I'm sorry, I couldn't process your request."
 
       // Add AI message to UI
       setMessages((prev) => [...prev, { sender: 'ai', text: aiResponse }])
@@ -104,19 +104,21 @@ export default function GlobalChatbot() {
 
   return (
     <>
-      <button
-        className={`chatbot-toggle ${isOpen ? 'open' : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Open chatbot"
-        aria-expanded={isOpen}
-      >
-        {isOpen ? '✕' : '💬'}
-      </button>
+      {!isOpen && (
+        <button
+          className="chatbot-toggle"
+          onClick={() => setIsOpen(true)}
+          aria-label="Open chatbot"
+          aria-expanded={false}
+        >
+          💬
+        </button>
+      )}
 
       {isOpen && (
-        <div className="chatbot-panel" role="dialog" aria-label="ImpactBridge Assistant">
+        <div className="chatbot-panel" role="dialog" aria-label="ServiceLoop Assistant">
           <div className="chatbot-header">
-            <h3>ImpactBridge Assistant</h3>
+            <h3>ServiceLoop Assistant</h3>
             <button
               className="chatbot-close"
               onClick={() => setIsOpen(false)}
@@ -154,15 +156,26 @@ export default function GlobalChatbot() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Ask me anything about nonprofits, events, or volunteering..."
+              placeholder="Ask me anything..."
               disabled={loading}
               aria-label="Chat input"
             />
+            {inputValue && (
+              <button
+                onClick={() => setInputValue('')}
+                className="chatbot-clear"
+                aria-label="Clear input"
+                type="button"
+              >
+                ✕
+              </button>
+            )}
             <button
               onClick={sendMessage}
               disabled={loading || !inputValue.trim()}
               className="chatbot-send"
               aria-label="Send message"
+              type="button"
             >
               ➤
             </button>

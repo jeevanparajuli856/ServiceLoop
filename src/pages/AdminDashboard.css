@@ -1,0 +1,353 @@
+.admin-dashboard-page {
+  flex: 1;
+  background: #F5F6FA;
+  min-height: calc(100vh - 80px);
+}
+
+.admin-dashboard-header {
+  background: linear-gradient(135deg, #2563EB 0%, #3BB4C1 50%, #35A29F 100%);
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+.admin-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-header-title {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.admin-shield-icon {
+  font-size: 3rem;
+  color: var(--white);
+  opacity: 0.9;
+}
+
+.admin-header-title h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.admin-subtitle {
+  margin: 0;
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.admin-dashboard-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.admin-sidebar {
+  position: sticky;
+  top: 2rem;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: none;
+  border: none;
+  border-radius: 12px;
+  text-align: left;
+  color: var(--text-dark);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  position: relative;
+}
+
+.admin-nav-item:hover {
+  background: var(--background);
+  color: var(--primary);
+}
+
+.admin-nav-item.active {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(59, 180, 193, 0.1));
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.admin-nav-item svg {
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.nav-badge {
+  margin-left: auto;
+  padding: 0.25rem 0.625rem;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.admin-main-content {
+  min-height: 500px;
+}
+
+.admin-section {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.section-count {
+  padding: 0.375rem 0.875rem;
+  background: var(--background);
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.organizations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.org-management-card {
+  background: var(--background);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.org-management-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+}
+
+.org-mgmt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.org-mgmt-header h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.org-mgmt-category {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--white);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.org-mgmt-mission {
+  margin: 0 0 1rem 0;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.org-mgmt-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-danger-small {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-danger-small:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.users-table {
+  overflow-x: auto;
+}
+
+.users-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table thead {
+  background: var(--background);
+}
+
+.users-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.users-table td {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-dark);
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-avatar-small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563EB, #3BB4C1);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-family: inherit;
+}
+
+.btn-link:hover {
+  color: #1D4ED8;
+}
+
+@media (max-width: 1024px) {
+  .admin-dashboard-layout {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    position: static;
+  }
+
+  .admin-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0.75rem;
+  }
+
+  .admin-nav-item {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .admin-header-title {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .admin-shield-icon {
+    font-size: 2rem;
+  }
+
+  .admin-header-title h1 {
+    font-size: 1.75rem;
+  }
+
+  .users-table {
+    font-size: 0.875rem;
+  }
+
+  .users-table th,
+  .users-table td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+

@@ -3,6 +3,20 @@
   padding: 3rem 0;
 }
 
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-header h1 {
+  background: linear-gradient(135deg, #2563EB 0%, #3BB4C1 50%, #35A29F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
 .organizations-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

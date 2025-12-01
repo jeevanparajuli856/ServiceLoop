@@ -1,8 +1,8 @@
-# ImpactBridge 🌉
+# ServiceLoop 🔄
 
 A beautiful, modern web application connecting volunteers with nonprofits, events, and community forums. Built with React, Supabase, and Google AI.
 
-![ImpactBridge](https://img.shields.io/badge/React-18.2-blue) ![Supabase](https://img.shields.io/badge/Supabase-2.38-green) ![Vite](https://img.shields.io/badge/Vite-5.0-purple)
+![ServiceLoop](https://img.shields.io/badge/React-18.2-blue) ![Supabase](https://img.shields.io/badge/Supabase-2.38-green) ![Vite](https://img.shields.io/badge/Vite-5.0-purple)
 
 ## ✨ Features
 
@@ -137,4 +137,3 @@ This project is open source and available for educational purposes.
 - Built with [Supabase](https://supabase.com)
 - Powered by [Google AI](https://ai.google.dev)
 - Styled with modern CSS and best practices
-

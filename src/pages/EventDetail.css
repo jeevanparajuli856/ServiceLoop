@@ -1,0 +1,466 @@
+.event-detail-page {
+  flex: 1;
+  padding: 0;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  margin: 2rem 0 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.back-link:hover {
+  background: var(--background);
+  color: #1D4ED8;
+}
+
+/* Event Header with Image */
+.event-header {
+  position: relative;
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
+
+.event-image-container {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.event-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+.event-image-placeholder {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-image-gradient {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2563EB 0%, #3BB4C1 50%, #35A29F 100%);
+}
+
+.event-header-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3rem 0 2rem;
+  z-index: 1;
+}
+
+.event-header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.event-header-text {
+  flex: 1;
+}
+
+.event-header-text h1 {
+  color: var(--white);
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.event-nonprofit-link {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.event-nonprofit-link:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.event-header-actions {
+  flex-shrink: 0;
+}
+
+.btn-join-event {
+  background: var(--white);
+  color: var(--primary);
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-join-event:hover {
+  background: var(--background);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn-joined {
+  background: var(--accent);
+  color: var(--white);
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.btn-joined:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}
+
+/* Event Detail Content */
+.event-detail-content {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 3rem;
+  padding-bottom: 3rem;
+}
+
+.event-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Event Info Cards */
+.event-info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.event-info-card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.event-info-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.event-info-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563EB 0%, #3BB4C1 50%, #35A29F 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.event-info-content h3 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.event-info-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.event-info-subvalue {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0.25rem 0 0 0;
+}
+
+/* Event Description */
+.event-description-section {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-description-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-dark);
+}
+
+.event-description-text {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+/* Sidebar */
+.event-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.event-sidebar-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-sidebar-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-dark);
+}
+
+.event-sidebar-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.event-sidebar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.event-sidebar-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.event-sidebar-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.event-sidebar-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.btn-sidebar {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Nonprofit Card in Sidebar */
+.event-nonprofit-card {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.event-nonprofit-card:hover {
+  background: var(--background);
+}
+
+.nonprofit-sidebar-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.nonprofit-sidebar-info {
+  flex: 1;
+}
+
+.nonprofit-sidebar-info h4 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-dark);
+}
+
+.nonprofit-sidebar-category {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--background);
+  color: var(--text-muted);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .event-detail-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .event-sidebar {
+    order: -1;
+  }
+
+  .event-info-cards {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .event-detail-page {
+    padding: 0;
+  }
+
+  .back-link {
+    margin: 1rem 0;
+    padding: 0.5rem;
+  }
+
+  .event-image-container,
+  .event-image-placeholder {
+    height: 350px;
+  }
+
+  .event-header-content {
+    padding: 2rem 0 1.5rem;
+  }
+
+  .event-header-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .event-header-text h1 {
+    font-size: 2rem;
+  }
+
+  .event-header-actions {
+    width: 100%;
+  }
+
+  .btn-join-event,
+  .btn-joined {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .event-info-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .event-description-section {
+    padding: 1.5rem;
+  }
+
+  .event-description-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .event-description-text {
+    font-size: 1rem;
+  }
+
+  .event-sidebar-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-image-container,
+  .event-image-placeholder {
+    height: 280px;
+  }
+
+  .event-header-text h1 {
+    font-size: 1.75rem;
+  }
+
+  .event-nonprofit-link {
+    font-size: 1rem;
+  }
+
+  .event-info-card {
+    padding: 1.25rem;
+  }
+
+  .event-info-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  .event-description-section {
+    padding: 1.25rem;
+  }
+}
+

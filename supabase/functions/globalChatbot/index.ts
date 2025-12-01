@@ -1,10 +1,9 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
-import { GoogleGenerativeAI } from 'https://esm.sh/@google/generative-ai@0.2.1'
 
 const GEMINI_API_KEY = Deno.env.get('GEMINI_API_KEY')
 
 if (!GEMINI_API_KEY) {
-  throw new Error('GEMINI_API_KEY environment variable is not set')
+  console.error('Missing GEMINI_API_KEY in Supabase env')
 }
 
 serve(async (req) => {
@@ -19,12 +18,25 @@ serve(async (req) => {
     })
   }
 
-  try {
-    const { prompt, context } = await req.json()
+  if (!GEMINI_API_KEY) {
+    return new Response(
+      JSON.stringify({ error: 'Gemini API key not configured' }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    )
+  }
 
-    if (!prompt || typeof prompt !== 'string') {
+  try {
+    const { message, context } = await req.json()
+
+    if (!message || typeof message !== 'string') {
       return new Response(
-        JSON.stringify({ error: 'Prompt is required and must be a string' }),
+        JSON.stringify({ error: 'Message is required and must be a string' }),
         {
           status: 400,
           headers: {
@@ -35,11 +47,9 @@ serve(async (req) => {
       )
     }
 
-    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY)
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
-
-    const systemContext = `You are ImpactBridge Assistant, a helpful AI assistant for the ImpactBridge platform. 
-ImpactBridge is a web application that connects volunteers with nonprofits, events, and community forums.
+    // Build system context
+    const systemContext = `You are ServiceLoop Assistant, a helpful AI assistant for the ServiceLoop platform. 
+ServiceLoop is a web application that connects volunteers with nonprofits, events, and community forums.
 
 Your role is to help users:
 - Understand how to use the platform
@@ -61,14 +71,40 @@ Use the provided context about the user's current page or activity when relevant
 - User ID: ${context.userId || 'not logged in'}`
       : ''
 
-    const fullPrompt = `${systemContext}${contextInfo}\n\nUser question: ${prompt}`
+    const fullMessage = `${systemContext}${contextInfo}\n\nUser question: ${message}`
 
-    const result = await model.generateContent(fullPrompt)
-    const response = await result.response
-    const text = response.text()
+    // Call Gemini 2.0 Flash API
+    const response = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-goog-api-key': GEMINI_API_KEY,
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [
+                { text: fullMessage }
+              ]
+            }
+          ]
+        }),
+      }
+    )
+
+    if (!response.ok) {
+      const errorData = await response.text()
+      console.error('Gemini API Error:', response.status, errorData)
+      throw new Error(`Gemini API failed with status ${response.status}`)
+    }
+
+    const data = await response.json()
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I could not process that."
 
     return new Response(
-      JSON.stringify({ text }),
+      JSON.stringify({ reply }),
       {
         status: 200,
         headers: {
@@ -78,12 +114,9 @@ Use the provided context about the user's current page or activity when relevant
       }
     )
   } catch (error) {
-    console.error('Error in globalChatbot function:', error)
+    console.error('Gemini Error:', error)
     return new Response(
-      JSON.stringify({
-        error: 'Failed to generate response',
-        message: error.message,
-      }),
+      JSON.stringify({ error: 'Gemini API failed' }),
       {
         status: 500,
         headers: {
@@ -94,4 +127,3 @@ Use the provided context about the user's current page or activity when relevant
     )
   }
 })
-

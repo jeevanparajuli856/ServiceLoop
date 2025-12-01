@@ -1,8 +1,11 @@
 :root {
   --primary: #2563EB;
+  --primary-gradient: linear-gradient(135deg, #2563EB 0%, #3BB4C1 50%, #35A29F 100%);
   --secondary: #4B5563;
   --background: #F3F4F6;
   --accent: #10B981;
+  --accent-alt: #3BB4C1;
+  --accent-alt-2: #35A29F;
   --text-dark: #111827;
   --text-muted: #6B7280;
   --white: #FFFFFF;

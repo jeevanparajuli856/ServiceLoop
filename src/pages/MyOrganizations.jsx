@@ -68,12 +68,6 @@ export default function MyOrganizations() {
                   <div className="organization-actions">
                     <Link
                       to={`/nonprofits/${org.id}`}
-                      className="btn btn-primary"
-                    >
-                      View Profile
-                    </Link>
-                    <Link
-                      to={`/nonprofits/${org.id}`}
                       className="btn btn-outline"
                     >
                       View Events

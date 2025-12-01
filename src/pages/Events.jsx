@@ -94,26 +94,6 @@ export default function Events() {
     setFilteredEvents(filtered)
   }
 
-  const handleJoinEvent = async (eventId) => {
-    if (!user) {
-      alert('Please log in to join events')
-      return
-    }
-
-    try {
-      const { error } = await supabase.from('volunteer_signups').insert({
-        user_id: user.id,
-        event_id: eventId,
-      })
-
-      if (error) throw error
-      setJoinedEvents((prev) => new Set([...prev, eventId]))
-    } catch (error) {
-      console.error('Error joining event:', error)
-      alert('Failed to join event. Please try again.')
-    }
-  }
-
   // Get unique categories from nonprofits
   const categories = [
     'all',
@@ -121,17 +101,18 @@ export default function Events() {
   ]
 
   return (
-    <div className="events-page">
+    <div className="global-events-page">
       <div className="container">
         <div className="page-header">
           <h1>Global Events</h1>
-          <p className="text-muted">Discover volunteer opportunities and community events</p>
+          <p className="page-subtitle">Discover volunteer opportunities and community events</p>
         </div>
 
-        <div className="filters">
+        <div className="filters-bar">
           <div className="filter-group">
-            <label>Category</label>
+            <label htmlFor="category-filter">Category</label>
             <select
+              id="category-filter"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="filter-select"
@@ -145,8 +126,9 @@ export default function Events() {
           </div>
 
           <div className="filter-group">
-            <label>Nonprofit</label>
+            <label htmlFor="nonprofit-filter">Nonprofit</label>
             <select
+              id="nonprofit-filter"
               value={selectedNonprofit}
               onChange={(e) => setSelectedNonprofit(e.target.value)}
               className="filter-select"
@@ -161,8 +143,9 @@ export default function Events() {
           </div>
 
           <div className="filter-group">
-            <label>Date</label>
+            <label htmlFor="date-filter">Date</label>
             <select
+              id="date-filter"
               value={dateFilter}
               onChange={(e) => setDateFilter(e.target.value)}
               className="filter-select"
@@ -185,9 +168,6 @@ export default function Events() {
                 key={event.id}
                 event={event}
                 nonprofit={event.nonprofits}
-                showJoin={true}
-                isJoined={joinedEvents.has(event.id)}
-                onJoin={() => handleJoinEvent(event.id)}
               />
             ))}
           </div>
@@ -201,4 +181,3 @@ export default function Events() {
     </div>
   )
 }
-

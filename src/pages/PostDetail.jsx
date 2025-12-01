@@ -29,14 +29,39 @@ export default function PostDetail() {
 
       if (error) throw error
 
-      // Get author email (fallback to user ID)
-      let authorEmail = 'User'
+      // Get author name from profiles
+      let authorName = 'Anonymous'
+      let authorEmail = null
+      
       if (data.user_id) {
-        authorEmail = `User ${data.user_id.substring(0, 8)}`
+        try {
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('email, full_name')
+            .eq('id', data.user_id)
+            .single()
+
+          if (profile) {
+            if (profile.full_name && profile.full_name.trim()) {
+              authorName = profile.full_name
+            } else if (profile.email) {
+              const emailName = profile.email.split('@')[0]
+              authorName = emailName.charAt(0).toUpperCase() + emailName.slice(1)
+            } else {
+              authorName = `User ${data.user_id.substring(0, 8)}`
+            }
+            authorEmail = profile.email
+          } else {
+            authorName = `User ${data.user_id.substring(0, 8)}`
+          }
+        } catch (e) {
+          authorName = `User ${data.user_id.substring(0, 8)}`
+        }
       }
 
       setPost({
         ...data,
+        author_name: authorName,
         author_email: authorEmail,
       })
     } catch (error) {
@@ -56,16 +81,44 @@ export default function PostDetail() {
 
       if (error) throw error
 
-      const commentsWithAuthors = (data || []).map((comment) => {
-        let authorEmail = 'User'
-        if (comment.user_id) {
-          authorEmail = `User ${comment.user_id.substring(0, 8)}`
-        }
-        return {
-          ...comment,
-          author_email: authorEmail,
-        }
-      })
+      const commentsWithAuthors = await Promise.all(
+        (data || []).map(async (comment) => {
+          let authorName = 'Anonymous'
+          let authorEmail = null
+          
+          if (comment.user_id) {
+            try {
+              const { data: profile } = await supabase
+                .from('profiles')
+                .select('email, full_name')
+                .eq('id', comment.user_id)
+                .single()
+
+              if (profile) {
+                if (profile.full_name && profile.full_name.trim()) {
+                  authorName = profile.full_name
+                } else if (profile.email) {
+                  const emailName = profile.email.split('@')[0]
+                  authorName = emailName.charAt(0).toUpperCase() + emailName.slice(1)
+                } else {
+                  authorName = `User ${comment.user_id.substring(0, 8)}`
+                }
+                authorEmail = profile.email
+              } else {
+                authorName = `User ${comment.user_id.substring(0, 8)}`
+              }
+            } catch (e) {
+              authorName = `User ${comment.user_id.substring(0, 8)}`
+            }
+          }
+
+          return {
+            ...comment,
+            author_name: authorName,
+            author_email: authorEmail,
+          }
+        })
+      )
 
       setComments(commentsWithAuthors)
     } catch (error) {
@@ -147,7 +200,7 @@ export default function PostDetail() {
           <div className="post-detail-header">
             <h1>{post.title}</h1>
             <div className="post-meta">
-              <span className="post-author">By {post.author_email || 'Anonymous'}</span>
+              <span className="post-author">By {post.author_name || post.author_email || 'Anonymous'}</span>
               <span className="post-date">{formatDate(post.created_at)}</span>
             </div>
           </div>

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
+import { FiCalendar, FiMapPin } from 'react-icons/fi'
 import './EventCard.css'
 
-export default function EventCard({ event, nonprofit, showJoin = false, isJoined = false, onJoin }) {
+export default function EventCard({ event, nonprofit }) {
   const formatDate = (dateString) => {
     if (!dateString) return 'Date TBD'
     const date = new Date(dateString)
@@ -13,43 +14,37 @@ export default function EventCard({ event, nonprofit, showJoin = false, isJoined
     })
   }
 
+  const formattedDate = formatDate(event.date)
+  const description = event.description ? `${event.description.slice(0, 150)}...` : 'No description available.'
+
   return (
-    <div className="event-card card">
-      <div className="event-card-header">
-        <h3>{event.title}</h3>
-        {nonprofit && (
-          <Link to={`/nonprofits/${nonprofit.id}`} className="event-nonprofit-link">
-            {nonprofit.name}
-          </Link>
-        )}
-      </div>
-      <p className="event-description">{event.description || 'No description available.'}</p>
-      <div className="event-details">
-        <div className="event-detail-item">
-          <span className="event-icon">📅</span>
-          <span>{formatDate(event.date)}</span>
+    <div className="event-card">
+      {nonprofit && (
+        <div className="event-card-badge">{nonprofit.name.toUpperCase()}</div>
+      )}
+
+      <h3 className="event-card-title">{event.title}</h3>
+
+      <p className="event-card-desc">
+        {description}
+      </p>
+
+      <div className="event-info-box">
+        <div className="info-row">
+          <FiCalendar />
+          <span>{formattedDate}</span>
         </div>
         {event.location && (
-          <div className="event-detail-item">
-            <span className="event-icon">📍</span>
+          <div className="info-row">
+            <FiMapPin />
             <span>{event.location}</span>
           </div>
         )}
       </div>
-      <div className="event-card-actions">
-        <Link to={`/events?event=${event.id}`} className="btn btn-outline">
-          View Details
-        </Link>
-        {showJoin && !isJoined && (
-          <button onClick={onJoin} className="btn btn-accent">
-            Join Event
-          </button>
-        )}
-        {isJoined && (
-          <span className="event-joined-badge">✓ Joined</span>
-        )}
-      </div>
+
+      <Link to={`/events/${event.id}`} className="view-details-btn">
+        View Details
+      </Link>
     </div>
   )
 }
-

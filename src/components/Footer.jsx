@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-brand">
-            <h3>ImpactBridge</h3>
+            <h3>ServiceLoop</h3>
             <p className="text-muted">Connecting volunteers with nonprofits to make real impact.</p>
           </div>
           <div className="footer-links">
@@ -18,7 +18,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} ImpactBridge. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} ServiceLoop. All rights reserved.</p>
         </div>
       </div>
     </footer>

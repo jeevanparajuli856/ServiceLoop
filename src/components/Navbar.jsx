@@ -1,26 +1,32 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
+import UserDropdown from './UserDropdown'
+import CreateOrganizationModal from './CreateOrganizationModal'
+import logo from '../assets/logo.png'
 import './Navbar.css'
 
 export default function Navbar() {
-  const { user, signOut } = useAuth()
-  const navigate = useNavigate()
+  const { user } = useAuth()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const [showCreateOrgModal, setShowCreateOrgModal] = useState(false)
 
-  const handleSignOut = async () => {
-    await signOut()
-    navigate('/')
-    setUserMenuOpen(false)
-  }
+  useEffect(() => {
+    const handleOpenCreateOrg = () => {
+      setShowCreateOrgModal(true)
+    }
+    window.addEventListener('openCreateOrgModal', handleOpenCreateOrg)
+    return () => {
+      window.removeEventListener('openCreateOrgModal', handleOpenCreateOrg)
+    }
+  }, [])
 
   return (
     <nav className="navbar" role="navigation" aria-label="Main navigation">
       <div className="navbar-container">
         <Link to="/" className="navbar-brand" onClick={() => setMobileMenuOpen(false)}>
-          <span className="brand-icon">🌉</span>
-          <span className="brand-name">ImpactBridge</span>
+          <img src={logo} alt="ServiceLoop Logo" className="brand-logo" />
+          <span className="brand-name">ServiceLoop</span>
         </Link>
 
         <button
@@ -55,26 +61,7 @@ export default function Navbar() {
 
           <div className="navbar-auth">
             {user ? (
-              <div className="user-menu-wrapper">
-                <button
-                  className="user-avatar-btn"
-                  onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  aria-expanded={userMenuOpen}
-                  aria-label="User menu"
-                >
-                  <div className="user-avatar">
-                    {user.email?.charAt(0).toUpperCase()}
-                  </div>
-                  <span className="user-email">{user.email}</span>
-                </button>
-                {userMenuOpen && (
-                  <div className="user-menu">
-                    <button onClick={handleSignOut} className="user-menu-item">
-                      Sign Out
-                    </button>
-                  </div>
-                )}
-              </div>
+              <UserDropdown />
             ) : (
               <Link to="/login" className="btn btn-primary" onClick={() => setMobileMenuOpen(false)}>
                 Login / Register
@@ -83,6 +70,11 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+
+      <CreateOrganizationModal
+        isOpen={showCreateOrgModal}
+        onClose={() => setShowCreateOrgModal(false)}
+      />
     </nav>
   )
 }
