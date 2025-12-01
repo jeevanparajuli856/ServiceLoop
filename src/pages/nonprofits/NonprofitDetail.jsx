@@ -5,6 +5,7 @@ import { FiPlusCircle, FiEdit, FiCalendar, FiBell } from 'react-icons/fi'
 import { supabase } from '../../supabaseClient'
 import { useAuth } from '../../hooks/useAuth'
 import { isSuperAdmin } from '../../utils/superAdmin'
+import { isOrgAdmin, getOrgAdmins } from '../../services/orgAdminService'
 import Tabs from '../../components/Tabs'
 import EventCard from '../../components/EventCard'
 import PostCard from '../../components/PostCard'
@@ -236,6 +237,22 @@ export default function NonprofitDetail() {
 
   const handleLeave = async () => {
     try {
+      // Check if user is an admin of this organization
+      const userIsAdmin = await isOrgAdmin(user, id)
+      
+      if (userIsAdmin) {
+        // Get all admins for this organization
+        const admins = await getOrgAdmins(id)
+        
+        // Check if there are other admins besides the current user
+        const otherAdmins = admins.filter(admin => admin.user_id !== user.id)
+        
+        if (otherAdmins.length === 0) {
+          alert('You cannot leave this organization because you are the only administrator. Please add another administrator before leaving.')
+          return
+        }
+      }
+
       const { error } = await supabase
         .from('nonprofit_members')
         .delete()
