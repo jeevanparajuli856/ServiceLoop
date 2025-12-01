@@ -1,5 +1,7 @@
 # ServiceLoop 🔄
-![Alt text](src/assets/logo.png)
+<p align="center">
+  ![Alt text](src/assets/logo.png)
+</p>
 A beautiful, modern web application connecting volunteers with nonprofits, events, and community forums. Built with React, Supabase, and Google AI.
 
 ![ServiceLoop](https://img.shields.io/badge/React-18.2-blue) ![Supabase](https://img.shields.io/badge/Supabase-2.38-green) ![Vite](https://img.shields.io/badge/Vite-5.0-purple)
