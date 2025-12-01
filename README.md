@@ -1,6 +1,6 @@
 # ServiceLoop 🔄
 <p align="center">
-  ![Alt text](src/assets/logo.png)
+  <img src="src/assets/logo.png" width="200">
 </p>
 A beautiful, modern web application connecting volunteers with nonprofits, events, and community forums. Built with React, Supabase, and Google AI.
 
