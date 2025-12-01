@@ -38,3 +38,4 @@ supabase/migrations/
 SETUP.md
 .temp/
 .vite/  
+vite.config.js
