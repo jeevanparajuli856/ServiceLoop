@@ -10,8 +10,8 @@ import {
   FiSettings,
   FiActivity
 } from 'react-icons/fi'
-import { useAuth } from '../hooks/useAuth'
-import { isSuperAdmin } from '../utils/superAdmin'
+import { useAuth } from '../../hooks/useAuth'
+import { isSuperAdmin } from '../../utils/superAdmin'
 import {
   getPendingOrgRequests,
   getAllOrganizations,
@@ -24,10 +24,10 @@ import {
   deleteOrganization,
   approveOrgRequest,
   rejectOrgRequest
-} from '../services/adminService'
-import ApprovalsTable from '../components/ApprovalsTable'
-import SystemStats from '../components/SystemStats'
-import AdminLogs from '../components/AdminLogs'
+} from '../../services/adminService'
+import ApprovalsTable from '../../components/ApprovalsTable'
+import SystemStats from '../../components/SystemStats'
+import AdminLogs from '../../components/AdminLogs'
 import './AdminDashboard.css'
 
 export default function AdminDashboard() {

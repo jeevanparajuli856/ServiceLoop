@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { supabase } from '../supabaseClient'
-import { useAuth } from '../hooks/useAuth'
-import EventCard from '../components/EventCard'
+import { supabase } from '../../supabaseClient'
+import { useAuth } from '../../hooks/useAuth'
+import EventCard from '../../components/EventCard'
 import './Events.css'
 
 export default function Events() {

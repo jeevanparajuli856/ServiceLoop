@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { FiCalendar, FiMapPin, FiArrowLeft, FiUsers, FiCheck } from 'react-icons/fi'
-import { supabase } from '../supabaseClient'
-import { useAuth } from '../hooks/useAuth'
+import { supabase } from '../../supabaseClient'
+import { useAuth } from '../../hooks/useAuth'
 import './EventDetail.css'
 
 export default function EventDetail() {

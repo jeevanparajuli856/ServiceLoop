@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { supabase } from '../supabaseClient'
-import { useAuth } from '../hooks/useAuth'
-import ProtectedRoute from '../components/ProtectedRoute'
-import NonprofitCard from '../components/NonprofitCard'
+import { supabase } from '../../supabaseClient'
+import { useAuth } from '../../hooks/useAuth'
+import ProtectedRoute from '../../components/ProtectedRoute'
+import NonprofitCard from '../../components/NonprofitCard'
 import './MyOrganizations.css'
 
 export default function MyOrganizations() {

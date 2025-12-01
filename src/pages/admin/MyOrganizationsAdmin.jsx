@@ -10,8 +10,8 @@ import {
   FiPlusCircle,
   FiArrowRight
 } from 'react-icons/fi'
-import { useAuth } from '../hooks/useAuth'
-import { getMyAdminOrganizations } from '../services/orgAdminService'
+import { useAuth } from '../../hooks/useAuth'
+import { getMyAdminOrganizations } from '../../services/orgAdminService'
 import './MyOrganizationsAdmin.css'
 
 export default function MyOrganizationsAdmin() {

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { supabase } from '../supabaseClient'
-import { useAuth } from '../hooks/useAuth'
-import Comment from '../components/Comment'
+import { supabase } from '../../supabaseClient'
+import { useAuth } from '../../hooks/useAuth'
+import Comment from '../../components/Comment'
 import './PostDetail.css'
 
 export default function PostDetail() {

@@ -9,9 +9,9 @@ import {
   FiTrendingUp,
   FiArrowRight
 } from 'react-icons/fi'
-import { supabase } from '../supabaseClient'
-import { useAuth } from '../hooks/useAuth'
-import PostCard from '../components/PostCard'
+import { supabase } from '../../supabaseClient'
+import { useAuth } from '../../hooks/useAuth'
+import PostCard from '../../components/PostCard'
 import './Dashboard.css'
 
 export default function Dashboard() {

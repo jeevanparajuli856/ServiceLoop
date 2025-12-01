@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { FiSearch, FiFilter, FiX } from 'react-icons/fi'
-import { supabase } from '../supabaseClient'
-import { useAuth } from '../hooks/useAuth'
-import NonprofitCard from '../components/NonprofitCard'
+import { supabase } from '../../supabaseClient'
+import { useAuth } from '../../hooks/useAuth'
+import NonprofitCard from '../../components/NonprofitCard'
 import './Nonprofits.css'
 
 export default function Nonprofits() {

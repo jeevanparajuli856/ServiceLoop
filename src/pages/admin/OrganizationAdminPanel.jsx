@@ -14,7 +14,7 @@ import {
   FiMail,
   FiUserPlus
 } from 'react-icons/fi'
-import { useAuth } from '../hooks/useAuth'
+import { useAuth } from '../../hooks/useAuth'
 import { 
   isOrgAdmin, 
   getOrgStats, 
@@ -28,9 +28,9 @@ import {
   deleteOrgPost,
   deleteOrgEvent,
   updateOrgDetails
-} from '../services/orgAdminService'
-import { supabase } from '../supabaseClient'
-import CreateEventModal from '../components/CreateEventModal'
+} from '../../services/orgAdminService'
+import { supabase } from '../../supabaseClient'
+import CreateEventModal from '../../components/CreateEventModal'
 import './OrganizationAdminPanel.css'
 
 export default function OrganizationAdminPanel() {
